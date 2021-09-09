@@ -31,7 +31,7 @@ def codify_json(json_str):
         if isinstance(d, bool):
             return span('value', span('literal', str(d).lower(), sel))
 
-        if isinstance(d, basestring):
+        if isinstance(d, str):
             return span('value', dquote(span('string', d, sel)))
 
         if isinstance(d, Number):
@@ -48,7 +48,7 @@ def codify_json(json_str):
                 s = "{}"
             else:
                 s = "{\n"
-                for i, (k,v) in enumerate(d.iteritems()):
+                for i, (k,v) in enumerate(d.items()):
                     # The current selector for this key is where we are plus
                     # ['key']
                     this_sel = sel + "['%s']" % k
